@@ -173,10 +173,15 @@ require("lazy").setup({
 				lsp_zero.default_keymaps({ buffer = bufnr })
 			end)
 
-			require("mason").setup()
+			require("mason").setup({
+				ensure_installed = {
+					"clang-format",
+				},
+			})
 			require("mason-lspconfig").setup({
 				ensure_installed = {
 					-- See https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+					"clangd", -- C/C++
 					"gopls", -- Go
 					"ocamllsp", -- OCaml
 					"pyright", -- Python
@@ -238,6 +243,8 @@ require("lazy").setup({
 		opts = {
 			-- Define your formatters
 			formatters_by_ft = {
+				c = { "clang-format" },
+				cpp = { "clang-format" },
 				cs = { "csharpier" },
 				go = { "goimports", "gofmt" },
 				lua = { "stylua" },
@@ -278,6 +285,7 @@ require("lazy").setup({
 			ensure_installed = {
 				"bash",
 				"c",
+				"cpp",
 				"c_sharp",
 				"diff",
 				"go",
